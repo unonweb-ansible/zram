@@ -1,0 +1,6 @@
+---
+zram:
+  config:
+    src:
+  apt:
+    state: present
