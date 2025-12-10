@@ -4,25 +4,19 @@
     - zram
   block:
 
-  # checks
-  - name: Check vars
-    ansible.builtin.assert:
-      that:
-        - zram.apt.state != None
-
   # install
   - name: Install zram-tools
     become: true
     ansible.builtin.apt:
       name: zram-tools
-      state: "{{ zram.apt.state }}"
+      state: "{{ zram_apt_state }}"
   
   # config
-  - when: zram.config.src != None
-    name: Copy zram.config.src to /etc/default/zramswap
+  - when: zram_config != None
+    name: Copy {{ zram_config }} to /etc/default/zramswap
     become: true
     ansible.builtin.copy:
-      src: "{{ zram.config.src }}"
+      src: "{{ zram_config }}"
       dest: /etc/default/zramswap
       owner: root
       group: root

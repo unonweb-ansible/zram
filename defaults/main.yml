@@ -1,6 +1,3 @@
 ---
-zram:
-  config:
-    src:
-  apt:
-    state: present
+zram_apt_state: present
+zram_config: # -> /etc/default/zramswap
